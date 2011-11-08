@@ -108,7 +108,7 @@ finalize() if $finalize;
 $total = sum @results;
 $average = $total / $count;
 print "Total: $total\n";
-print "Average: $average:\n";
+print "Average: $average\n";
 
 
 __END__
