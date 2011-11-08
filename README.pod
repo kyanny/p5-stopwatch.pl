@@ -5,12 +5,17 @@ stopwatch.pl -
 =head1 SYNOPSIS
 
   $ ./stopwatch.pl \
-      --initialize 'curl -O http://memcached.googlecode.com/files/memcached-1.4.9.tar.gz' \
+      --initialize 'curl -Os http://memcached.googlecode.com/files/memcached-1.4.9.tar.gz' \
       --before     'tar xzf memcached-1.4.9.tar.gz' \
       --main       'cd memcached-1.4.9 && ./configure && make' \
       --after      'cd memcached-1.4.9 && make clean' \
       --finalize   'rm -rf memcached-1.4.9 && rm memcached-1.4.9.tar.gz' \
       --count 10
+
+  Options:
+    --verbose
+    --version
+    --help
 
 =head1 DESCRIPTION
 
