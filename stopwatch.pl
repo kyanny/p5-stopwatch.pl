@@ -4,6 +4,7 @@ use warnings;
 use Getopt::Long qw(HelpMessage);
 use Time::HiRes qw(gettimeofday tv_interval);
 use File::Basename;
+use List::Util qw(sum);
 
 our $VERSION = '0.01';
 
@@ -32,7 +33,9 @@ $verbose ||= 0;
 my $verbose_level_1 = $verbose > 0;
 my $verbose_level_2 = $verbose > 1;
 
+my @results;
 my $total;
+my $average;
 my $ret;
 
 #----
@@ -59,9 +62,9 @@ sub main {
 
     my $end = [gettimeofday()];
     my $elapsed = tv_interval($start, $end);
-    print $elapsed, "\n";
+    push @results, $elapsed;
 
-    $total += $elapsed;
+    print $elapsed, "\n";
 }
 
 sub after {
@@ -101,7 +104,11 @@ for my $i (1..$count) {
 }
 
 finalize() if $finalize;
+
+$total = sum @results;
+$average = $total / $count;
 print "Total: $total\n";
+print "Average: $average:\n";
 
 
 __END__
